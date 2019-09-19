@@ -1,0 +1,12 @@
+$themeColor: #42E5D3;
+$themeBgColor:#f6f6f6;
+body{
+  // background: $themeBgColor;
+}
+
+button{
+  border: none;
+  padding: 10px 20px;
+  background: $themeColor;
+  cursor: pointer;
+}
