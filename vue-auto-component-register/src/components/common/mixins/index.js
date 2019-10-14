@@ -33,10 +33,8 @@ const mixin = {
           return ('00' + str).substr(str.length);
       },
       loadPage(path,query){
-        this.$router.push({
-          path:path,
-          query:query
-        })
+        // this.$router.replace('/',path)
+        this.$router.replace({name:path})
       }
     }
 }
