@@ -8,8 +8,7 @@ import axios from 'axios';
 import "babel-polyfill";
 import store from '@/store/main.js';
 //自定义全局mixin
-import mixins from '@/common/mixins'
-Vue.mixin(mixins)
+
 //自定义全局指令
 import directive from '@/common/directive'
 Vue.use(directive)

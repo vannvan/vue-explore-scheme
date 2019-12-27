@@ -1,55 +1,34 @@
 <template lang="html">
     <dv-full-screen-container>
       <!-- <dv-loading>Loading...</dv-loading> -->
-      <div class="m-header">
-        <div class="header-item left">
-          <dv-border-box-1>
-            <dv-decoration-1 style="width:200px;height:50px;" />
-            <div class="show-number-box">
-              <div class="show-number-item">
-                <span>新增学校</span>
-                <dv-digital-flop :config="digitalData" style="width:200px;height:50px;" />
-              </div>
-              <dv-decoration-4 style="width:5px;height:100px;" />
-              <div class="show-number-item">
-                <span>新增人脸</span>
-                <dv-digital-flop :config="digitalData" style="width:200px;height:50px;" />
-              </div>
-              <dv-decoration-4 style="width:5px;height:100px;" />
-              <div class="show-number-item">
-                <span>新增设备</span>
-                <dv-digital-flop :config="digitalData" style="width:200px;height:50px;" />
-              </div>
-            </div>
-          </dv-border-box-1>
-        </div>
-        <div class="header-item middle">
-          <dv-border-box-4>
-            <div class="title-box">
-              <h1>XXXX的运营平台</h1>
-              <h2>2019年11月28日 星期四</h2>
-            </div>
+      <!-- <div class="header" style="width:100%;height:80px;background:#f6f6f6">
 
-            <dv-decoration-5 style="width:90%;height:40px;position:absolute;bottom:0;left:5%" />
-          </dv-border-box-4>
-        </div>
-        <div class="header-item right">
-          <dv-border-box-1>
-            <div class="right-chart-box">
-              <dv-decoration-9 class="charts-box" style="font-weight:bold">66</dv-decoration-9>
-              <dv-decoration-7 class="charts-title" style="width:150px;height:30px;">SettledSchools</dv-decoration-7>
-
-            </div>
-          </dv-border-box-1>
-        </div>
-      </div>
+      </div> -->
       <!-- 特效线条 -->
-      <dv-decoration-10 style="width:100%;height:5px;" />
+      <!-- <dv-decoration-10 style="width:100%;height:5px;" /> -->
       <div class="m-main">
         <div class="main-item left">
           <LeftItem></LeftItem>
         </div>
         <div class="main-item middle">
+            <dv-border-box-7 class="middle-count-box">
+              <div class="show-number-box">
+                <div class="show-number-item">
+                  <span>新增学校</span>
+                  <dv-digital-flop :config="digitalData" style="width:100%;height:50px;" />
+                </div>
+                <dv-decoration-4 style="width:5px;height:100px;" />
+                <div class="show-number-item">
+                  <span>新增人脸</span>
+                  <dv-digital-flop :config="digitalData" style="width:100%;height:50px;" />
+                </div>
+                <dv-decoration-4 style="width:5px;height:100px;" />
+                <div class="show-number-item">
+                  <span>新增设备</span>
+                  <dv-digital-flop :config="digitalData" style="width:100%;height:50px;" />
+                </div>
+              </div>
+            </dv-border-box-7>
           <MiddleItem></MiddleItem>
         </div>
         <div class="main-item right">
@@ -71,8 +50,14 @@ export default {
   },
   data() {
     return {
-
-
+      digitalData:{
+        number: [100],
+        content: '{nt}个',
+        style: {
+          fontSize: 40,
+          fill: '#f00'
+        }
+      },
       scrollConfig:{
         header: ['列1', '列2', '列3'],
         data: [
@@ -91,14 +76,7 @@ export default {
         columnWidth: [50],
         align: ['center']
       },
-      digitalData:{
-        number: [100],
-        content: '{nt}个',
-        style: {
-          fontSize: 40,
-          fill: '#f00'
-        }
-      }
+
     }
   },
   mounted() {
@@ -126,12 +104,19 @@ export default {
   background: url(../assets/images/bg1.png);
   background-size: cover;
   color: #fff;
-  .m-header{
+  .m-main{
+    width: 100%;
     display: flex;
-    height: 200px;
-    .header-item{
-      flex: 1;
-      &.left{
+    .left,.right{
+      width: 20%;
+    }
+    .middle{
+      width: 60%;
+      height: 100vh;
+      .middle-count-box{
+        width:60%;
+        height:140px;
+        margin:20px auto 0 auto;
         .show-number-box{
           width: 100%;
           display: flex;
@@ -149,45 +134,6 @@ export default {
           }
         }
       }
-      &.middle{
-        color: #fff;
-        // line-height: 200px;
-        text-align: center;
-        .title-box{
-          height: calc(100% - 60px);
-          padding: 55px
-
-        }
-      }
-      &.right{
-        .right-chart-box{
-          float: right;
-          width: 150px;
-          height: 100%;
-          .charts-box{
-            height: 110px;
-            width: 110px;
-            margin-top: 25px;
-            float: right;
-            margin-right: 50px
-          }
-          .charts-title{
-            position: absolute;
-            bottom: 25px;
-            right: 25px
-          }
-        }
-      }
-    }
-  }
-  .m-main{
-    width: 100%;
-    display: flex;
-    .left,.right{
-      width: 20%;
-    }
-    .middle{
-      width: 60%
     }
   }
 }

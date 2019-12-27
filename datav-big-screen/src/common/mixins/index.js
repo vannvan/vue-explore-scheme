@@ -1,9 +1,7 @@
-import URL_CONFIG from '@/api';
 import { formatDate } from '@/utils/date.js';
 const mixin = {
      data(){
       return {
-        URL_CONFIG:URL_CONFIG.UrlConfig
       }
      },
      filters:{

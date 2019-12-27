@@ -12,12 +12,5 @@ export default new Router({
       path:'/Index',
       component: resolve => require(['@/components/Index.vue'], resolve),
     },
-    {
-      path: '/HelloWorld',
-      component: resolve => require(['@/components/views/HelloWorld'], resolve),
-      meta:{
-          title:'helloWorld'
-      }
-    }
   ]
 })
