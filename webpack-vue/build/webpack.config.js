@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const devMode = process.argv.indexOf('--mode=production') === -1;
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const notifier = require('node-notifier');
+
 module.exports = {
   entry:{
     main:path.resolve(__dirname,'../src/main.js')
@@ -122,13 +125,43 @@ module.exports = {
   },
   plugins:[
     new CleanWebpackPlugin(),
+
     new HtmlWebpackPlugin({
       template:path.resolve(__dirname,'../src/index.html')
     }),
+
     new vueLoaderPlugin(),
+
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-    })
-  ]
+    }),
+
+    new FriendlyErrorsWebpackPlugin({
+       // 运行成功
+      compilationSuccessInfo:{
+          message:[`你的应用程序在这里运行：http://`],
+          // notes:['有些附加说明要在成功编辑时显示']
+      },
+      //  运行错误
+      onErrors:function(severity,errors){
+          // 可以收听插件转换和优先级的错误
+          // 严重性可以是'错误'或'警告'
+          if (severity !== 'error') {
+              return;
+            }
+            const error = errors[0];
+            notifier.notify({
+              title: "Webpack error",
+              message: severity + ': ' + error.name,
+              subtitle: error.file || '',
+              // icon: ICON
+            });
+      },
+      //是否每次编译之间清除控制台
+      //默认为true
+      clearConsole:true,
+      })
+  ],
+  stats: 'errors-only'
 }

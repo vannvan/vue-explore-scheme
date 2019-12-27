@@ -1,8 +1,5 @@
 <template>
-	<div class="index">
-		{{hello}}
-		<Index/>
-	</div>
+	<div id="app"></div>
 </template>
 <script>
 import Index from './Index'

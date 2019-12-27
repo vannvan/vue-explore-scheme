@@ -2,7 +2,7 @@
 * @Author: vannvan <https://github.com/vannvan>
 * @Date:   2019-12-27 11:26:19
 * @Last Modified by:   vannvan
-* @Last Modified time: 2019-12-27 11:30:45
+* @Last Modified time: 2019-12-27 15:15:21
 */
 const path = require('path')
 const webpackConfig = require('./webpack.config.js')
@@ -15,8 +15,9 @@ module.exports = WebpackMerge(webpackConfig,{
   devtool:'cheap-module-source-map',
   plugins:[
     new CopyWebpackPlugin([{
-      from:path.resolve(__dirname,'../src'),
-      to:path.resolve(__dirname,'../dist')
+      from:path.resolve(__dirname,'../static'),
+      to:path.resolve(__dirname,'../dist/static'),
+      ignore: ['.*']
     }]),
   ],
   optimization:{
@@ -38,6 +39,7 @@ module.exports = WebpackMerge(webpackConfig,{
           chunks: "initial" // 只打包初始时依赖的第三方
         }
       }
-    }
+    },
+   
   }
 })
